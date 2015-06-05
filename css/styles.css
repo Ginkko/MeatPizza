@@ -1,0 +1,24 @@
+/*body {
+  font-family: 'Libre Baskerville', serif;
+  background-image: url("../img/background.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}*/
+
+h1 {
+  padding-bottom: 9px;
+  margin: 40px 0 20px;
+  border-bottom: 1px solid grey;
+  text-align: center;
+}
+
+.form-bottom {
+  position: absolute;
+  bottom: 30px;
+}
+
+/*.panel
+{
+  background: rgba(255, 255, 255, 0.5);
+
+}*/
