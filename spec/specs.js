@@ -5,3 +5,11 @@ describe('Pizza', function () {
       expect(testPizza.size).to.equal(16);
     });
   });
+
+describe('Topping', function() {
+  it('creates a new Topping object with the appropriate attributes', function () {
+    var testTopping = new Topping('Pepperoni', 1);
+    expect(testTopping.name).to.equal('Pepperoni');
+    expect(testTopping.price).to.equal(1);
+  });
+});
