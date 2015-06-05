@@ -15,16 +15,19 @@ Order.prototype.price = function() {
   for (var i = 0; i < this.pizzas.length; i++) {
     var pizza = this.pizzas[i];
 
-    if (pizza.size === 16) {
+    if (pizza.size === 12) {
+     this.cost += 14;
+    } else if (pizza.size === 16) {
       this.cost += 20;
     } else if (pizza.size === 18) {
       this.cost += 22;
     }
-
     for (var j = 0; j < pizza.toppings.length; j++) {
       var topping = pizza.toppings[j];
 
-      if (pizza.size === 16) {
+      if (pizza.size === 12){
+        this.cost += (topping.price * .75);
+      } else if (pizza.size === 16) {
         this.cost += topping.price;
       } else if (pizza.size === 18) {
         this.cost += (topping.price * 1.25);

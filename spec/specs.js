@@ -26,6 +26,7 @@ describe('Order', function () {
       testOrder.price();
       expect(testOrder.cost).to.equal(27);
     });
+
     it('supports 18" pizza size', function () {
       var testOrder = new Order('Meat-Co', 'Delivery');
       var testPizza = new Pizza('Meat-Mountain', 18);
@@ -36,6 +37,18 @@ describe('Order', function () {
       testOrder.addPizza(testPizza);
       testOrder.price();
       expect(testOrder.cost).to.equal(30.75);
+    });
+
+    it('supports 12" pizza size', function () {
+      var testOrder = new Order('Meat-Co', 'Delivery');
+      var testPizza = new Pizza('Meat-Mountain', 12);
+      var testTopping0 = new Topping('Lots of meat', 4);
+      var testTopping1 = new Topping('More meat', 3);
+      testPizza.addTopping(testTopping0);
+      testPizza.addTopping(testTopping1);
+      testOrder.addPizza(testPizza);
+      testOrder.price();
+      expect(testOrder.cost).to.equal(19.25);
     });
   });
 });
