@@ -79,8 +79,6 @@ $(document).ready(function() {
   $("form#newOrder").submit(function(event) {
     event.preventDefault();
 
-    debugger;
-
     var orderName = $("input#orderName").val();
     var orderType = $("select#orderType").val();
     var order = new Order(orderName, orderType);
@@ -89,5 +87,16 @@ $(document).ready(function() {
     $("h2#orderName").prepend(order.name);
     $("#orderDetail").delay(500).fadeIn("slow");
 
+    $("span#addPizza").on("click", function(){
+
+      debugger;
+
+      var pizzaName = $("input#pizzaName").val();
+      var pizzaSize = parseInt($("select#pizzaSize").val());
+      var pizza = new Pizza(pizzaName, pizzaSize);
+      order.pizzas.push(pizza);
+
+
+    });
   });
 });

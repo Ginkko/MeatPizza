@@ -13,7 +13,6 @@
         <h1>Meat Or Die</h1>
         <h4 class="text-center">You had me at "Meat Tornado"</h4>
       </div>
-
       <div id="newOrder" class="panel">
         <h2 class="panel-heading text-center">Create New Order</h2>
         <form id="newOrder">
@@ -40,7 +39,40 @@
       </div>
       <div id="orderDetail" class="panel">
         <h2 id="orderName" class="panel-heading text-center">'s Order</h2>
+        <div class="panel-body">
+          <div class="panel">
+            <h2 class="panel-heading text-center>">Create New Pizza</h2>
+              <div class="form-group panel-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="pizzaName">Pizza Name:</label>
+                    <input class="form-control" type="text" id="pizzaName" required autofocus>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="orderType">Pizza Size:</label>
+                    <select class="form-control" id="pizzaSize">
+                      <option value="12">Medium</option>
+                      <option value="16">Large</option>
+                      <option value="18">Extra Large</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="">
+                <span class="btn btn-info col-md-4 col-md-offset-4" id="addPizza">Add</button>
+              </div>
+          </div>
+          <br>
+          <br>
+          <div class="panel">
+            <h2 class="panel-heading text-center">Pizzas</h2>
+            <div class="panel-body">
+            </div>
+            <h2 class="panel-footer" id="orderCost">Total: $</h2>
+
+          </div>
+        </div>
       </div>
-    </div>
+    </div>   <!-- container  -->
   </body>
 </html>
