@@ -13,3 +13,10 @@ describe('Topping', function() {
     expect(testTopping.price).to.equal(1);
   });
 });
+
+describe('populateDB', function() {
+  it('populates the topping list with pre-selected toppings', function () {
+    populateDB();
+    expect(toppings.length).to.equal(6)
+  });
+});
