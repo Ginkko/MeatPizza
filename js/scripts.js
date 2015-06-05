@@ -88,17 +88,39 @@ var populateDB = function() {
 $(document).ready(function() {
   populateDB();
 var pizza = undefined;
+var topping = undefined;
 
   $("form#newOrder").submit(function(event) {
     event.preventDefault();
-
     var orderName = $("input#orderName").val();
     var orderType = $("select#orderType").val();
     var order = new Order(orderName, orderType);
 
+    if (order.type === "Delivery") {
+      $("h5#deliveryMessage").append("Delivery adds $2.00 to your total");
+    }
     $("#newOrder").fadeOut("slow");
     $("h2#orderName").prepend(order.name);
     $("#orderDetail").delay(500).fadeIn("slow");
+
+    $("span#addTopping").on("click", function() {
+      topping = toppingList[$("select#toppings").val()];
+      pizza.toppings.push(topping);
+
+      $("ul#currentToppings").empty();
+      for (var i = 0; i< pizza.toppings.length; i++) {
+        var currentTopping = pizza.toppings[i];
+
+        $("ul#currentToppings").append("<li>" + currentTopping.name + "</li>")
+      }
+      $("#pizzaToppingDetail").fadeIn("slow");
+
+      pizza.price();
+
+      $("h2#pizzaCost").empty();
+      $("h2#pizzaCost").append("Total: $" + pizza.cost);
+
+    });
 
     $("span#savePizza").on("click", function() {
 
@@ -114,10 +136,11 @@ var pizza = undefined;
       order.price();
       $("h2#orderCost").empty();
       $("h2#orderCost").append("Total: $" + order.cost);
-      debugger;
     });
 
     $("span#addPizza").on("click", function(){
+      $("h2#pizzaCost").empty();
+      $("ul#currentToppings").empty();
 
       var pizzaName = $("input#pizzaName").val();
       var pizzaSize = parseInt($("select#pizzaSize").val());
@@ -126,7 +149,7 @@ var pizza = undefined;
       $("h2#pizzaName").append(pizza.name);
 
       for (var i = 0; i < toppingList.length; i++) {
-        var topping = toppingList[i];
+        topping = toppingList[i];
 
         if (pizza.size === 12) {
           var toppingFinalPrice = topping.price * .75;
@@ -147,24 +170,7 @@ var pizza = undefined;
 
 
 
-      $("span#addTopping").on("click", function() {
-        var topping = toppingList[$("select#toppings").val()];
-        pizza.toppings.push(topping);
 
-        $("ul#currentToppings").empty();
-        for (var i = 0; i< pizza.toppings.length; i++) {
-          var currentTopping = pizza.toppings[i];
-
-          $("ul#currentToppings").append("<li>" + currentTopping.name + "</li>")
-        }
-        $("#pizzaToppingDetail").fadeIn("slow");
-
-        pizza.price();
-
-        $("h2#pizzaCost").empty();
-        $("h2#pizzaCost").append("Total: $" + pizza.cost);
-
-      });
     });
   });
 });
