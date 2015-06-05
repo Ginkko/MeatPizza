@@ -4,6 +4,19 @@ describe('Pizza', function () {
       expect(testPizza.name).to.equal('Megga-Za');
       expect(testPizza.size).to.equal(16);
     });
+
+    describe('addTopping', function() {
+      it('adds the topping to the current pizza', function () {
+        var testPizza = new Pizza('Meat-Mountain', 16);
+        var testTopping0 = new Topping('Lots of meat', 4);
+        var testTopping1 = new Topping('More meat', 3);
+        testPizza.addTopping(testTopping0);
+        testPizza.addTopping(testTopping1);
+        expect(testPizza.toppings).to.eql([testTopping0, testTopping1]);
+      });
+    });
+
+
   });
 
 describe('Topping', function() {
@@ -17,6 +30,14 @@ describe('Topping', function() {
 describe('populateDB', function() {
   it('populates the topping list with pre-selected toppings', function () {
     populateDB();
-    expect(toppings.length).to.equal(6)
+    expect(toppingList.length).to.equal(6)
   });
 });
+
+
+
+// describe('price', function() {
+//   it('caclulates the price based on the pizza and toppings', function () {
+//
+//   });
+// });
