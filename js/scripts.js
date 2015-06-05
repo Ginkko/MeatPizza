@@ -12,32 +12,16 @@ Order.prototype.addPizza = function(pizza) {
 }
 
 Order.prototype.price = function() {
+debugger;
+  if (this.type === "Delivery") {
+    this.cost += 2;
+  }
+
   for (var i = 0; i < this.pizzas.length; i++) {
-    var pizza = this.pizzas[i];
+    var currentPizza = this.pizzas[i];
 
-    if (this.type === "Delivery") {
-      this.cost += 2;
-    }
+    this.cost += (currentPizza.cost);
 
-    if (pizza.size === 12) {
-     this.cost += 14;
-    } else if (pizza.size === 16) {
-      this.cost += 20;
-    } else if (pizza.size === 18) {
-      this.cost += 22;
-    }
-
-    for (var j = 0; j < pizza.toppings.length; j++) {
-      var topping = pizza.toppings[j];
-
-      if (pizza.size === 12){
-        this.cost += (topping.price * .75);
-      } else if (pizza.size === 16) {
-        this.cost += topping.price;
-      } else if (pizza.size === 18) {
-        this.cost += (topping.price * 1.25);
-      }
-    }
   }
 }
 
@@ -45,10 +29,34 @@ function Pizza(name, size) {
   this.name = name;
   this.size = size;
   this.toppings = [];
+  this.cost = 0;
 }
 
 Pizza.prototype.addTopping = function(topping) {
   this.toppings.push(topping);
+}
+
+Pizza.prototype.price = function() {
+debugger;
+  if (this.size === 12) {
+   this.cost += 14;
+ } else if (this.size === 16) {
+    this.cost += 20;
+  } else if (this.size === 18) {
+    this.cost += 22;
+  }
+
+  for (var i = 0; i < this.toppings.length; i++) {
+    var topping = this.toppings[i];
+
+    if (this.size === 12){
+      this.cost += (topping.price * .75);
+    } else if (this.size === 16) {
+      this.cost += topping.price;
+    } else if (this.size === 18) {
+      this.cost += (topping.price * 1.25);
+    }
+  }
 }
 
 function Topping(name, price) {
@@ -115,9 +123,11 @@ $(document).ready(function() {
       $("#pizzaDetail").fadeIn("slow");
 
       $("span#addTopping").on("click", function() {
+
         var topping = toppingList[$("select#toppings").val()];
         pizza.toppings.push(topping);
 
+        $("ul#currentToppings").empty();
         for (var i = 0; i< pizza.toppings.length; i++) {
           var currentTopping = pizza.toppings[i];
 
@@ -126,6 +136,7 @@ $(document).ready(function() {
 
         $("#pizzaToppingDetail").fadeIn("slow");
 
+        // var pizzaPrice =
       });
     });
   });

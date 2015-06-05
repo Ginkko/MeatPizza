@@ -22,9 +22,8 @@ describe('Order', function () {
       var testTopping1 = new Topping('More meat', 3);
       testPizza.addTopping(testTopping0);
       testPizza.addTopping(testTopping1);
-      testOrder.addPizza(testPizza);
-      testOrder.price();
-      expect(testOrder.cost).to.equal(27);
+      testPizza.price();
+      expect(testPizza.cost).to.equal(27);
     });
 
     it('supports 18" pizza size', function () {
@@ -34,9 +33,8 @@ describe('Order', function () {
       var testTopping1 = new Topping('More meat', 3);
       testPizza.addTopping(testTopping0);
       testPizza.addTopping(testTopping1);
-      testOrder.addPizza(testPizza);
-      testOrder.price();
-      expect(testOrder.cost).to.equal(30.75);
+      testPizza.price();
+      expect(testPizza.cost).to.equal(30.75);
     });
 
     it('supports 12" pizza size', function () {
@@ -46,9 +44,8 @@ describe('Order', function () {
       var testTopping1 = new Topping('More meat', 3);
       testPizza.addTopping(testTopping0);
       testPizza.addTopping(testTopping1);
-      testOrder.addPizza(testPizza);
-      testOrder.price();
-      expect(testOrder.cost).to.equal(19.25);
+      testPizza.price();
+      expect(testPizza.cost).to.equal(19.25);
     });
 
     it('supports delivery type orders', function () {
@@ -58,6 +55,7 @@ describe('Order', function () {
       var testTopping1 = new Topping('More meat', 3);
       testPizza.addTopping(testTopping0);
       testPizza.addTopping(testTopping1);
+      testPizza.price();
       testOrder.addPizza(testPizza);
       testOrder.price();
       expect(testOrder.cost).to.equal(21.25);
@@ -80,6 +78,18 @@ describe('Pizza', function () {
         testPizza.addTopping(testTopping0);
         testPizza.addTopping(testTopping1);
         expect(testPizza.toppings).to.eql([testTopping0, testTopping1]);
+      });
+    });
+
+    describe('price', function() {
+      it('caclulates the price based on the pizza and toppings', function () {
+        var testPizza = new Pizza('Meat-Mountain', 16);
+        var testTopping0 = new Topping('Lots of meat', 4);
+        var testTopping1 = new Topping('More meat', 3);
+        testPizza.addTopping(testTopping0);
+        testPizza.addTopping(testTopping1);
+        testPizza.price();
+        expect(testPizza.cost).to.equal(27);
       });
     });
   });
