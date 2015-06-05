@@ -4,6 +4,15 @@ describe('Order', function () {
     expect(testOrder.name).to.equal('Meat-Co');
     expect(testOrder.type).to.equal('Pick-up');
   });
+
+  describe('addPizza', function() {
+    it('adds the pizza to the current order', function () {
+      var testOrder = new Order('Epicodus', 'Delivery');
+      var testPizza = new Pizza('Hoboken Heart Attack', 18);
+      testOrder.addPizza(testPizza);
+      expect(testOrder.pizzas).to.eql([testPizza]);
+    });
+  });
 });
 
 describe('Pizza', function () {

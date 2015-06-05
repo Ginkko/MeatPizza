@@ -6,6 +6,10 @@ function Order(name, type) {
   this.pizzas = [];
 }
 
+Order.prototype.addPizza = function(pizza) {
+  this.pizzas.push(pizza);
+}
+
 function Pizza(name, size) {
   this.name = name;
   this.size = size;
