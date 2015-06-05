@@ -12,7 +12,8 @@ Order.prototype.addPizza = function(pizza) {
 }
 
 Order.prototype.price = function() {
-debugger;
+  this.cost = 0;
+
   if (this.type === "Delivery") {
     this.cost += 2;
   }
@@ -37,7 +38,9 @@ Pizza.prototype.addTopping = function(topping) {
 }
 
 Pizza.prototype.price = function() {
-debugger;
+  this.cost = 0;
+
+
   if (this.size === 12) {
    this.cost += 14;
  } else if (this.size === 16) {
@@ -83,7 +86,6 @@ var populateDB = function() {
 
 
 $(document).ready(function() {
-
   populateDB();
 
   $("form#newOrder").submit(function(event) {
@@ -102,7 +104,6 @@ $(document).ready(function() {
       var pizzaName = $("input#pizzaName").val();
       var pizzaSize = parseInt($("select#pizzaSize").val());
       var pizza = new Pizza(pizzaName, pizzaSize);
-      order.pizzas.push(pizza);
 
       $("h2#pizzaName").append(pizza.name);
 
@@ -120,10 +121,13 @@ $(document).ready(function() {
         $("#toppings").append("<option value='" + i + "'>" + topping.name + " $" + toppingFinalPrice + "</option>");
       }
 
-      $("#pizzaDetail").fadeIn("slow");
+      pizza.price();
+
+      $("h2#pizzaCost").append(pizza.cost);
+      $("#createPizza").fadeOut("slow");
+      $("#pizzaDetail").delay(500).fadeIn("slow");
 
       $("span#addTopping").on("click", function() {
-
         var topping = toppingList[$("select#toppings").val()];
         pizza.toppings.push(topping);
 
@@ -133,10 +137,28 @@ $(document).ready(function() {
 
           $("ul#currentToppings").append("<li>" + currentTopping.name + "</li>")
         }
-
         $("#pizzaToppingDetail").fadeIn("slow");
 
-        // var pizzaPrice =
+        pizza.price();
+
+        $("h2#pizzaCost").empty();
+        $("h2#pizzaCost").append("Total: $" + pizza.cost);
+
+
+      });
+
+      $("span#savePizza").on("click", function() {
+        order.addPizza(pizza);
+        $("ul#pizzaList").empty();
+        for (var i = 0; i < order.pizzas.length; i++) {
+          var currentPizza = order.pizzas[i];
+          $("ul#pizzaList").append("<li>"+ currentPizza.name + " $" + currentPizza.cost);
+        }
+
+        debugger;
+        order.price();
+        $("h2#orderCost").empty();
+        $("h2#orderCost").append("Total: $" + order.cost);
       });
     });
   });
