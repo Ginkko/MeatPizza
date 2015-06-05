@@ -76,6 +76,8 @@ var populateDB = function() {
 
 $(document).ready(function() {
 
+  populateDB();
+
   $("form#newOrder").submit(function(event) {
     event.preventDefault();
 
@@ -89,14 +91,43 @@ $(document).ready(function() {
 
     $("span#addPizza").on("click", function(){
 
-      debugger;
-
       var pizzaName = $("input#pizzaName").val();
       var pizzaSize = parseInt($("select#pizzaSize").val());
       var pizza = new Pizza(pizzaName, pizzaSize);
       order.pizzas.push(pizza);
 
+      $("h2#pizzaName").append(pizza.name);
 
+      for (var i = 0; i < toppingList.length; i++) {
+        var topping = toppingList[i];
+
+        if (pizza.size === 12) {
+          var toppingFinalPrice = topping.price * .75;
+        } else if (pizza.size ===18) {
+          var toppingFinalPrice = topping.price * (1.25);
+        } else {
+          var toppingFinalPrice = topping.price;
+        }
+
+        $("#toppings").append("<option value='" + i + "'>" + topping.name + " $" + toppingFinalPrice + "</option>");
+      }
+
+      $("#pizzaDetail").fadeIn("slow");
+
+      $("span#addTopping").on("click", function() {
+        var topping = toppingList[$("select#toppings").val()];
+        pizza.toppings.push(topping);
+
+        for (var i = 0; i< pizza.toppings.length; i++) {
+          var currentTopping = pizza.toppings[i];
+
+          $("ul#currentToppings").append("<li>" + currentTopping.name + "</li>")
+        }
+
+        $("#pizzaToppingDetail").fadeIn("slow");
+
+      });
     });
   });
+
 });

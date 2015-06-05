@@ -94,7 +94,6 @@ describe('Topping', function() {
 
 describe('populateDB', function() {
   it('populates the topping list with pre-selected toppings', function () {
-    populateDB();
     expect(toppingList.length).to.equal(6)
   });
 });

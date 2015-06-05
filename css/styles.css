@@ -25,3 +25,11 @@ h1 {
 #orderDetail {
   display: none;
 }
+
+#pizzaDetail {
+  display: none;
+}
+
+#pizzaToppingDetail {
+  display: none;
+}

@@ -58,9 +58,27 @@
                   </div>
                 </div>
               </div>
-              <div class="">
-                <span class="btn btn-info col-md-4 col-md-offset-4" id="addPizza">Add</button>
+                <span class="btn btn-success col-md-4 col-md-offset-4" id="addPizza">Create</button>
               </div>
+          <br>
+          <br>
+          <div id="pizzaDetail" class="panel">
+            <h2 id="pizzaName" class="panel-heading text-center">Add Toppings to </h2>
+            <div class="form-group panel-body">
+              <label for="toppings"></label>
+              <select class="form-control" id="toppings">
+              </select>
+              <span class="btn btn-info" id="addTopping">Add</span>
+              <br>
+              <br>
+              <div id="pizzaToppingDetail" class="panel">
+                <label for="currentToppings">Selected Toppings:</label>
+                <ul id="currentToppings">
+                </ul>
+                </form>
+              </div>
+            </div>
+            <h2 class="panel-footer" id="pizzaCost">Total: $</h2>
           </div>
           <br>
           <br>
@@ -69,10 +87,9 @@
             <div class="panel-body">
             </div>
             <h2 class="panel-footer" id="orderCost">Total: $</h2>
-
           </div>
         </div>
-      </div>
+      </div> <!-- order detail panel-->
     </div>   <!-- container  -->
   </body>
 </html>
