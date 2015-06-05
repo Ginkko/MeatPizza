@@ -4,10 +4,26 @@ function Order(name, type) {
   this.name = name;
   this.type = type;
   this.pizzas = [];
+  this.cost = 0
 }
 
 Order.prototype.addPizza = function(pizza) {
   this.pizzas.push(pizza);
+}
+
+Order.prototype.price = function() {
+  for (var i = 0; i < this.pizzas.length; i++) {
+
+      if (this.pizzas[i].size === 16) {
+        this.cost += 20;
+      }
+      for (var j = 0; j < this.pizzas[i].toppings.length; j++) {
+
+        if (this.pizzas[i].size === 16) {
+          this.cost += this.pizzas[i].toppings[j].price;
+      }
+    }
+  }
 }
 
 function Pizza(name, size) {
