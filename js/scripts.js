@@ -72,3 +72,22 @@ var populateDB = function() {
   toppingList.push(topping5);
 
 }
+
+
+$(document).ready(function() {
+
+  $("form#newOrder").submit(function(event) {
+    event.preventDefault();
+
+    debugger;
+
+    var orderName = $("input#orderName").val();
+    var orderType = $("select#orderType").val();
+    var order = new Order(orderName, orderType);
+
+    $("#newOrder").fadeOut("slow");
+    $("h2#orderName").prepend(order.name);
+    $("#orderDetail").delay(500).fadeIn("slow");
+
+  });
+});
