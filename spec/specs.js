@@ -5,14 +5,14 @@ describe('Order', function () {
     expect(testOrder.type).to.equal('Pick-up');
   });
 
-  describe('addPizza', function() {
-    it('adds the pizza to the current order', function () {
-      var testOrder = new Order('Epicodus', 'Delivery');
-      var testPizza = new Pizza('Hoboken Heart Attack', 18);
-      testOrder.addPizza(testPizza);
-      expect(testOrder.pizzas).to.eql([testPizza]);
-    });
-  });
+  // describe('addPizza', function() {
+  //   it('adds the pizza to the current order', function () {
+  //     var testOrder = new Order('Epicodus', 'Delivery');
+  //     var testPizza = new Pizza('Hoboken Heart Attack', 18);
+  //     testOrder.addPizza(testPizza);
+  //     expect(testOrder.pizzas).to.eql([testPizza]);
+  //   });
+  // });
 
   describe('price', function() {
     it('caclulates the price based on the pizza and toppings', function () {
@@ -56,7 +56,7 @@ describe('Order', function () {
       testPizza.addTopping(testTopping0);
       testPizza.addTopping(testTopping1);
       testPizza.price();
-      testOrder.addPizza(testPizza);
+      testOrder.pizzas.push(testPizza);
       testOrder.price();
       expect(testOrder.cost).to.equal(21.25);
     });

@@ -7,9 +7,9 @@ function Order(name, type) {
   this.cost = 0
 }
 
-Order.prototype.addPizza = function(pizza) {
-  this.pizzas.push(pizza);
-}
+// Order.prototype.addPizza = function(pizza) {
+//   this.pizzas.push(pizza);
+// }
 
 Order.prototype.price = function() {
   this.cost = 0;
@@ -87,6 +87,7 @@ var populateDB = function() {
 
 $(document).ready(function() {
   populateDB();
+var pizza = undefined;
 
   $("form#newOrder").submit(function(event) {
     event.preventDefault();
@@ -99,11 +100,28 @@ $(document).ready(function() {
     $("h2#orderName").prepend(order.name);
     $("#orderDetail").delay(500).fadeIn("slow");
 
+    $("span#savePizza").on("click", function() {
+
+      $("#pizzaDetail").fadeOut("slow");
+      $("#createPizza").delay(500).fadeIn("slow");
+
+      order.pizzas.push(pizza);
+      $("ul#pizzaList").empty();
+            for (var i = 0; i < order.pizzas.length; i++) {
+        var currentPizza = order.pizzas[i];
+        $("ul#pizzaList").append("<li>"+ currentPizza.name + " $" + currentPizza.cost);
+      }
+      order.price();
+      $("h2#orderCost").empty();
+      $("h2#orderCost").append("Total: $" + order.cost);
+      debugger;
+    });
+
     $("span#addPizza").on("click", function(){
 
       var pizzaName = $("input#pizzaName").val();
       var pizzaSize = parseInt($("select#pizzaSize").val());
-      var pizza = new Pizza(pizzaName, pizzaSize);
+      pizza = new Pizza(pizzaName, pizzaSize);
 
       $("h2#pizzaName").append(pizza.name);
 
@@ -127,6 +145,8 @@ $(document).ready(function() {
       $("#createPizza").fadeOut("slow");
       $("#pizzaDetail").delay(500).fadeIn("slow");
 
+
+
       $("span#addTopping").on("click", function() {
         var topping = toppingList[$("select#toppings").val()];
         pizza.toppings.push(topping);
@@ -144,23 +164,7 @@ $(document).ready(function() {
         $("h2#pizzaCost").empty();
         $("h2#pizzaCost").append("Total: $" + pizza.cost);
 
-
-      });
-
-      $("span#savePizza").on("click", function() {
-        order.addPizza(pizza);
-        $("ul#pizzaList").empty();
-        for (var i = 0; i < order.pizzas.length; i++) {
-          var currentPizza = order.pizzas[i];
-          $("ul#pizzaList").append("<li>"+ currentPizza.name + " $" + currentPizza.cost);
-        }
-
-        debugger;
-        order.price();
-        $("h2#orderCost").empty();
-        $("h2#orderCost").append("Total: $" + order.cost);
       });
     });
   });
-
 });
