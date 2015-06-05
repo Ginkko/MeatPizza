@@ -6,4 +6,6 @@ Meat or Die Pizza is a Pizza ordering app. You can create an order, and add uniq
 Don't expect to find any vegetarian toppings, as they're useless and corrupt perfectly good pizza.
 
 
-Running live @ 
+Running live @ http://ginkko-meatpizza.bitballoon.com/
+
+MIT LICENSE
