@@ -1,5 +1,11 @@
 var toppingList = [];
 
+function Order(name, type) {
+  this.name = name;
+  this.type = type;
+  this.pizzas = [];
+}
+
 function Pizza(name, size) {
   this.name = name;
   this.size = size;
