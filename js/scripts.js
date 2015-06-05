@@ -15,6 +15,10 @@ Order.prototype.price = function() {
   for (var i = 0; i < this.pizzas.length; i++) {
     var pizza = this.pizzas[i];
 
+    if (this.type === "Delivery") {
+      this.cost += 2;
+    }
+
     if (pizza.size === 12) {
      this.cost += 14;
     } else if (pizza.size === 16) {
