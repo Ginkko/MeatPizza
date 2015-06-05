@@ -98,15 +98,3 @@ describe('populateDB', function() {
     expect(toppingList.length).to.equal(6)
   });
 });
-
-describe('price', function() {
-  it('caclulates the price based on the pizza and toppings', function () {
-    var testOrder = new Order('Meat-Co', 'Delivery');
-    var testPizza = new Pizza('Meat-Mountain', 16);
-    var testTopping0 = new Topping('Lots of meat', 4);
-    var testTopping1 = new Topping('More meat', 3);
-    testPizza.addTopping(testTopping0);
-    testPizza.addTopping(testTopping1);
-    testOrder.addPizza(testPizza);
-  });
-});

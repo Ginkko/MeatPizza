@@ -26,6 +26,7 @@ Order.prototype.price = function() {
     } else if (pizza.size === 18) {
       this.cost += 22;
     }
+
     for (var j = 0; j < pizza.toppings.length; j++) {
       var topping = pizza.toppings[j];
 
